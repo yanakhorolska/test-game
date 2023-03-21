@@ -1,0 +1,22 @@
+{
+  "name": "test-game",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /test-game/"
+  },
+  "author": "'YANA' <example@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "notiflix": "^3.2.6"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "parcel": "^2.8.3",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "posthtml-include": "^1.7.4",
+    "process": "^0.11.10"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}
