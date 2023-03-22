@@ -1,6 +1,6 @@
 import Notiflix from 'notiflix';
 
-const create = document.querySelector('[data-create');
+const create = document.querySelector('[data-create]');
 const destroy = document.querySelector('[data-destroy]');
 const boxesBlock = document.querySelector('#boxes');
 const columns = document.querySelector('#controls .columns');
@@ -30,7 +30,7 @@ let events = [];
 let intervalId;
 
 function getAmount() {
-  const amount = columns.value * rows.value;
+  const amount = Number(columns.value) * Number(rows.value);
   if (amount === 0) {
     Notiflix.Notify.warning('Please, enter the number of rows and columns');
     return;
@@ -42,7 +42,7 @@ function getAmount() {
 }
 
 function onReplayButton() {
-  replayButton.setAttribute('disabled', 'true');
+  replayButton.setAttribute('disabled', '');
   activeDiv.classList.remove('activeBox', 'hero');
   destroy.removeAttribute('disabled');
   let i = 0;
@@ -57,9 +57,9 @@ function onReplayButton() {
     const event = events[i];
 
     setTimeout(() => {
-      event.classList.add('hero');
+      event.classList.add('activeBox', 'hero');
       if (prevEvent) {
-        prevEvent.classList.remove('hero');
+        prevEvent.classList.remove('activeBox', 'hero');
       }
       prevEvent = event;
     }, 250);
@@ -69,16 +69,17 @@ function onReplayButton() {
 }
 
 function onStopButton() {
-  clearInterval(intervalId);
   stopButton.classList.remove('block');
   replayButton.classList.add('block');
-  upButton.setAttribute('disabled', 'true');
-  leftButton.setAttribute('disabled', 'true');
-  rightButton.setAttribute('disabled', 'true');
-  downButton.setAttribute('disabled', 'true');
+  upButton.setAttribute('disabled', '');
+  leftButton.setAttribute('disabled', '');
+  rightButton.setAttribute('disabled', '');
+  downButton.setAttribute('disabled', '');
 }
 
 function destroyBoxes() {
+  events = [];
+  clearInterval(intervalId);
   boxesBlock.innerHTML = '';
   squares.textContent = 'Squares: 0';
   create.removeAttribute('disabled');
@@ -88,8 +89,6 @@ function destroyBoxes() {
   columns.removeAttribute('disabled');
   controlButtons.classList.remove('flex');
   replayButton.classList.remove('block');
-  events = [];
-  clearInterval(intervalId);
   upButton.removeAttribute('disabled');
   leftButton.removeAttribute('disabled');
   rightButton.removeAttribute('disabled');
@@ -97,23 +96,23 @@ function destroyBoxes() {
 }
 
 function createBoxes(amount) {
-  if (columns.value > 20) {
+  if (Number(columns.value) > 20) {
     Notiflix.Notify.warning('Max number of columns must be 20');
     return;
   }
   stopButton.classList.add('block');
   squares.textContent = `Squares: ${amount}`;
-  rows.setAttribute('disabled', 'true');
-  columns.setAttribute('disabled', 'true');
+  rows.setAttribute('disabled', '');
+  columns.setAttribute('disabled', '');
   controlButtons.classList.add('flex');
-  destroy.setAttribute('disabled', 'true');
-  create.setAttribute('disabled', 'true');
+  destroy.setAttribute('disabled', '');
+  create.setAttribute('disabled', '');
 
   for (let i = 1; i <= amount; i += 1) {
     const div = document.createElement('div');
     div.style = `width: 50px; height: 50px; background-color: white;
     border: 1px solid #5acc8e;`;
-    boxesBlock.style = `width: ${columns.value * 50}px; height: 100%;`;
+    boxesBlock.style = `width: ${Number(columns.value) * 50}px; height: 100%;`;
     boxesBlock.appendChild(div);
     div.setAttribute('id', `box${i}`);
 
@@ -133,31 +132,27 @@ function createBoxes(amount) {
 function createActiveDiv(activeId) {
   activeDiv = document.querySelector(`#box${activeId}`);
   activeDiv.classList.add('activeBox', 'hero');
-  activeDiv.style = `background-color: white; width: 50px; height: 50px; 
-    border: 1px solid #5acc8e`;
   let x = activeDiv;
   events.push(x);
+  console.log(events);
   return;
 }
 
 function deleteActiveDiv(activeId) {
   let activeDivToDelete = document.querySelector(`#box${activeId}`);
-  activeDivToDelete.style = `background-color: white; width: 50px; height: 50px; 
-    border: 1px solid #5acc8e`;
   activeDivToDelete.classList.remove('activeBox', 'hero');
 }
 
 function movePicture(e) {
-  const amount = columns.value * rows.value;
+  const amount = Number(columns.value) * Number(rows.value);
   if (amount < 1) {
     return;
   }
-  // const cls = activeDiv.classList.value;
   const directionKeyboard = e.key;
   const direction = e.currentTarget.textContent;
   if (direction === 'up' || directionKeyboard === 'ArrowUp') {
-    if (activeId <= columns.value) {
-      upButton.setAttribute('disabled', 'true');
+    if (activeId <= Number(columns.value)) {
+      upButton.setAttribute('disabled', '');
       return;
     }
     downButton.removeAttribute('disabled');
@@ -167,18 +162,18 @@ function movePicture(e) {
   }
 
   if (direction === 'left' || directionKeyboard === 'ArrowLeft') {
-    if (activeId <= columns.value) {
-      upButton.setAttribute('disabled', 'true');
+    if (activeId <= Number(columns.value)) {
+      upButton.setAttribute('disabled', '');
     }
 
-    if (activeId >= amount - columns.value) {
-      downButton.setAttribute('disabled', 'true');
+    if (activeId >= amount - Number(columns.value)) {
+      downButton.setAttribute('disabled', '');
     }
-    if (activeId < amount - columns.value) {
+    if (activeId < amount - Number(columns.value)) {
       downButton.removeAttribute('disabled');
     }
     if (activeDiv.classList.value.includes('side-left')) {
-      leftButton.setAttribute('disabled', 'true');
+      leftButton.setAttribute('disabled', '');
       return;
     }
     rightButton.removeAttribute('disabled');
@@ -187,17 +182,17 @@ function movePicture(e) {
     return;
   }
   if (direction === 'right' || directionKeyboard === 'ArrowRight') {
-    if (activeId <= columns.value) {
-      upButton.setAttribute('disabled', 'true');
+    if (activeId <= Number(columns.value)) {
+      upButton.setAttribute('disabled', '');
     }
-    if (activeId >= columns.value) {
+    if (activeId >= Number(columns.value)) {
       upButton.removeAttribute('disabled');
     }
-    if (activeId >= amount - columns.value) {
-      downButton.setAttribute('disabled', 'true');
+    if (activeId >= amount - Number(columns.value)) {
+      downButton.setAttribute('disabled', '');
     }
     if (activeDiv.classList.value.includes('side-right')) {
-      rightButton.setAttribute('disabled', 'true');
+      rightButton.setAttribute('disabled', '');
       return;
     }
     leftButton.removeAttribute('disabled');
@@ -206,8 +201,8 @@ function movePicture(e) {
     return;
   }
   if (direction === 'down' || directionKeyboard === 'ArrowDown') {
-    if (activeId > amount - columns.value) {
-      downButton.setAttribute('disabled', 'true');
+    if (activeId > amount - Number(columns.value)) {
+      downButton.setAttribute('disabled', '');
       return;
     }
     upButton.removeAttribute('disabled');
