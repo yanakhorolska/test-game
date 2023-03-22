@@ -88,6 +88,7 @@ function destroyBoxes() {
   rows.removeAttribute('disabled');
   columns.removeAttribute('disabled');
   controlButtons.classList.remove('flex');
+  replayButton.removeAttribute('disabled');
   replayButton.classList.remove('block');
   upButton.removeAttribute('disabled');
   leftButton.removeAttribute('disabled');
