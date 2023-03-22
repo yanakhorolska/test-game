@@ -26,23 +26,24 @@
       <button class="button" type="button" data-destroy>Destroy</button>
     </div>
 
-    <button id="stop" class="stop-button button" type="button">
-      Stop record
-    </button>
-    <button id="replay" class="replay-button button" type="button">
-      Replay
-    </button>
-
     <div class="game" id="game">
       <div class="buttonsBox">
         <button class="button control-buttons up-button">up</button>
-        <div>
+        <div class="control-buttons_middle">
           <button class="button control-buttons left-button">left</button>
           <button class="button control-buttons right-button">right</button>
         </div>
         <button class="button control-buttons down-button">down</button>
       </div>
-      <div class="boxes" id="boxes"></div>
+      <div>
+        <button id="stop" class="stop-button button" type="button">
+          Stop record
+        </button>
+        <button id="replay" class="replay-button button" type="button">
+          Replay
+        </button>
+        <div class="boxes" id="boxes"></div>
+      </div>
     </div>
 
     <script src="index.js" type="module"></script>
