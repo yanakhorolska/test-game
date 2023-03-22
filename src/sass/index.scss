@@ -1,0 +1,106 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: #9aeabe;
+  font-family: 'Roboto', sans-serif;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #5acc8e;
+  padding: 50px;
+  box-shadow: 1px 2px 5px 5px #9aeabe;
+}
+
+.boxes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  flex-wrap: wrap;
+  box-shadow: 0 5px 20px #5acc8e;
+}
+
+.game {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.button {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px #0c6434;
+  border: none;
+  outline: none;
+  background-color: #3cb371;
+  color: #fff;
+  transition: scale 100ms linear;
+  &:hover {
+    scale: calc(1.01);
+  }
+}
+.stop-button,
+.replay-button {
+  display: none;
+  margin: 10 auto 0;
+}
+
+.buttonsBox {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.flex {
+  display: flex;
+}
+.block {
+  display: block;
+}
+
+.input {
+  margin-left: 20px;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 10px #0c6434;
+}
+
+.label {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.squaresCounter {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+.hero {
+  background-image: url('../assets/images/Spongebob-Squarepants.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
